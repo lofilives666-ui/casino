@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "WalletTransaction"
+ADD COLUMN "method" TEXT,
+ADD COLUMN "requestedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN "processedAt" TIMESTAMP(3),
+ADD COLUMN "failureReason" TEXT;
+
