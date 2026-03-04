@@ -9,7 +9,15 @@ test("signup -> login -> email verification flow", async ({ page }) => {
   await page.goto("/signup");
   await page.getByLabel("Full Name").fill(fullName);
   await page.getByLabel("Email").fill(email);
-  await page.getByLabel("Password").fill(password);
+  await page.getByLabel("Login Password").fill(password);
+  await page.getByRole("button", { name: "User Agreement" }).click();
+  await expect(page.getByRole("heading", { name: "User Agreement" })).toBeVisible();
+  const agreementBox = page.getByTestId("agreement-scroll-box");
+  await agreementBox.evaluate((node) => {
+    node.scrollTop = node.scrollHeight;
+    node.dispatchEvent(new Event("scroll", { bubbles: true }));
+  });
+  await page.getByRole("button", { name: "Accept" }).click();
   await page.getByRole("button", { name: "Sign Up" }).click();
 
   await expect(page.getByText("Account created. Redirecting to login...")).toBeVisible();

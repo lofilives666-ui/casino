@@ -21,6 +21,11 @@ This document is the operational and architectural reference for future maintena
 - Verified player
 - Admin reviewer (API key protected admin endpoints)
 
+Role intent:
+
+- `Agent`: first-line support operations role; handles player tickets, initial triage, and escalations.
+- `Sub-admin`: supervisory role; handles sensitive approvals/escalations across payments, KYC, and support.
+
 ## 2.1 Quick Links (App Routes)
 
 Assume local base URL: `http://localhost:3000`
@@ -42,6 +47,24 @@ Admin pages:
 - Admin Payments Review: `http://localhost:3000/admin/payments`
 - Admin Tickets: `http://localhost:3000/admin/tickets`
 - Admin Users: `http://localhost:3000/admin/users`
+- Admin Agents: `http://localhost:3000/admin/agents`
+- Admin Sub-admin: `http://localhost:3000/admin/sub-admin`
+- Admin Settings: `http://localhost:3000/admin/settings`
+- Admin Reports: `http://localhost:3000/admin/reports`
+- Admin CMS Pages: `http://localhost:3000/admin/cms-pages`
+
+Admin URL quick copy:
+
+- `http://localhost:3000/admin`
+- `http://localhost:3000/admin/kyc`
+- `http://localhost:3000/admin/payments`
+- `http://localhost:3000/admin/tickets`
+- `http://localhost:3000/admin/users`
+- `http://localhost:3000/admin/agents`
+- `http://localhost:3000/admin/sub-admin`
+- `http://localhost:3000/admin/settings`
+- `http://localhost:3000/admin/reports`
+- `http://localhost:3000/admin/cms-pages`
 
 Important note:
 
