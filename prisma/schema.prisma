@@ -26,6 +26,9 @@ model User {
   walletLedgers   WalletLedger[]
   walletTransactions WalletTransaction[]
   kycSubmissions  KycSubmission[]
+  supportTickets  SupportTicket[]
+  supportMessages SupportTicketMessage[] @relation("SupportMessageAuthor")
+  assignedTickets SupportTicket[] @relation("SupportTicketAssignee")
 }
 
 model PlinkoProvablyFair {
@@ -162,4 +165,44 @@ model KycProviderEvent {
 
   @@unique([provider, providerEventId])
   @@index([processedAt(sort: Desc)])
+}
+
+model SupportTicket {
+  id               String               @id @default(cuid())
+  userId           String
+  category         String
+  subject          String
+  description      String
+  priority         String               @default("medium")
+  status           String               @default("open")
+  assigneeAdminId  String?
+  linkedEntityType String?
+  linkedEntityId   String?
+  firstResponseAt  DateTime?
+  resolvedAt       DateTime?
+  closedAt         DateTime?
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  user             User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assigneeAdmin    User?                @relation("SupportTicketAssignee", fields: [assigneeAdminId], references: [id], onDelete: SetNull)
+  messages         SupportTicketMessage[]
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([status, priority, createdAt(sort: Desc)])
+  @@index([assigneeAdminId, status, createdAt(sort: Desc)])
+}
+
+model SupportTicketMessage {
+  id           String       @id @default(cuid())
+  ticketId     String
+  authorUserId String?
+  authorRole   String
+  isInternal   Boolean      @default(false)
+  message      String
+  createdAt    DateTime     @default(now())
+  ticket       SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  author       User?        @relation("SupportMessageAuthor", fields: [authorUserId], references: [id], onDelete: SetNull)
+
+  @@index([ticketId, createdAt(sort: Asc)])
+  @@index([authorUserId, createdAt(sort: Desc)])
 }

@@ -29,6 +29,9 @@ export default async function AccountPage() {
               <Link href="/" className="pill px-3 py-1.5 text-sm text-[#dce9ff]">
                 Lobby
               </Link>
+              <Link href="/support" className="pill px-3 py-1.5 text-sm text-[#dce9ff]">
+                Support
+              </Link>
               <Link href="/wallet" className="rounded-full bg-[#2d7de0] px-4 py-1.5 text-sm font-semibold text-white">
                 Wallet
               </Link>

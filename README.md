@@ -1,6 +1,12 @@
 # casino
 My casino products.
 
+## Product Documentation
+
+Detailed product architecture, user flows, security model, APIs, and operations guide:
+
+- [docs/PRODUCT_DOCUMENTATION.md](docs/PRODUCT_DOCUMENTATION.md)
+
 ## Development
 
 ```bash

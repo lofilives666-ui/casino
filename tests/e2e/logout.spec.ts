@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import { createSessionToken, getSessionCookieName } from "../../src/lib/session";
 
 test("authenticated user can logout from home sidebar", async ({ context, page, baseURL }) => {
+  process.env.SESSION_SECRET = process.env.SESSION_SECRET ?? "dev-only-session-secret-change-me";
   const appUrl = baseURL ?? "http://127.0.0.1:3000";
   const cookieDomain = new URL(appUrl).hostname;
   const sessionToken = createSessionToken({

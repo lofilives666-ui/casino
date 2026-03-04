@@ -14,8 +14,11 @@ export default function AdminKycPage() {
               <p className="text-sm text-[#8fb1cc]">Internal panel for verify/reject decisions</p>
             </div>
             <div className="flex gap-2">
-              <Link href="/" className="pill px-3 py-1.5 text-sm text-[#dce9ff]">
-                Lobby
+              <Link href="/admin" className="pill px-3 py-1.5 text-sm text-[#dce9ff]">
+                Dashboard
+              </Link>
+              <Link href="/admin/tickets" className="pill px-3 py-1.5 text-sm text-[#dce9ff]">
+                Tickets
               </Link>
               <Link href="/kyc" className="rounded-full bg-[#2d7de0] px-4 py-1.5 text-sm font-semibold text-white">
                 User KYC
